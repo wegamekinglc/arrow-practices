@@ -41,9 +41,9 @@
   } while(false);
 
 void first_example() {
-  std::vector<int64_t> data{1, 2, 3, 4};
-  auto arr = std::make_shared<arrow::Int64Array>(data.size(), arrow::Buffer::Wrap(data));
-  std::cout << arr->ToString() << std::endl;
+  const std::vector<int64_t> data{1, 2, 3, 4};
+  const arrow::Int64Array arr(static_cast<int64_t>(data.size()), arrow::Buffer::Wrap(data));
+  std::cout << arr.ToString() << std::endl;
 }
 
 void random_data_example() {
@@ -252,8 +252,8 @@ void run_row_conversions() {
 
 int main(int argc, char** argv) {
   first_example();
-  random_data_example();
-  building_struct_array();
-  build_struct_builder();
-  run_row_conversions();
+  // random_data_example();
+  // building_struct_array();
+  // build_struct_builder();
+  // run_row_conversions();
 }
