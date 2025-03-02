@@ -11,7 +11,7 @@ def run_export():
     if sys.platform == "win32":
         dll_path = str(Path(__file__).parents[1] / "cpp/lib/export_cdata.dll")
     else:
-        dll_path = ""
+        dll_path = str(Path(__file__).parents[1] / "cpp/lib/libexport_cdata.so")
     lib = ffi.dlopen(dll_path)
     # create a new pointer with ffi
     c_arr = ffi.new("struct ArrowArray*")
