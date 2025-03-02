@@ -24,9 +24,7 @@ if [ -f "./vcpkg" ]; then
 else
   bash bootstrap-vcpkg.sh
 fi
-
-cd ports/arrow
-../../vcpkg install --x-feature=flight
+./vcpkg install arrow
 )
 
 if [ $? -ne 0 ]; then
