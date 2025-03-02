@@ -7,3 +7,4 @@ cpp/cmake-build-release
 cpp/build
 cpp/lib
 cpp/.vscode
+.vscode

@@ -22,7 +22,7 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 set(CMAKE_CXX_STANDARD 17)
 include(Platform)
 
-find_package(Arrow CONFIG REQUIRED)
+#find_package(ARROW CONFIG REQUIRED)
 find_package(ArrowFlight CONFIG REQUIRED)
 include_directories("${ARROW_INCLUDE_DIR}")
 message("-- Arrow INCLUDE DIR: ${ARROW_INCLUDE_DIR}")
