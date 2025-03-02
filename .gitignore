@@ -5,3 +5,4 @@ cpp/bin
 cpp/cmake-build-debug
 cpp/cmake-build-release
 cpp/build
+cpp/lib

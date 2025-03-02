@@ -27,3 +27,4 @@ include_directories("${ARROW_INCLUDE_DIR}")
 message("-- Arrow INCLUDE DIR: ${ARROW_INCLUDE_DIR}")
 
 add_subdirectory(chapter1)
+add_subdirectory(chapter4)
