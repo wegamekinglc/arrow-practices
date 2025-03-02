@@ -25,10 +25,11 @@ if exist "./vcpkg.exe" (
     .\bootstrap-vcpkg.bat
 )
 
-.\vcpkg install arrow:x64-windows-static
+cd ports/arrow
+.\vcpkg install --triplet=x64-windows-static --x-feature=flight
 
 if %errorlevel% neq 0 exit /b 1
-cd ..
+cd ../../..
 
 if "%ADDRESS_MODEL%"=="Win64" (
   set PLATFORM=x64
