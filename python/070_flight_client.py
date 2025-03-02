@@ -1,7 +1,7 @@
 import pyarrow as pa
 from pyarrow import flight
 
-client = flight.connect(('localhost', 64648))
+client = flight.connect(('localhost', 62001))
 flights = list(client.list_flights())
 
 for f in flights:

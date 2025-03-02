@@ -40,7 +40,7 @@ class Server(flight.FlightServerBase):
         pf = pq.ParquetFile(input_file, pre_buffer=True)
         def gen():
             try:
-                for batch in pf.iter_batches():
+                for batch in pf.iter_batches(batch_size=1_000_000):
                     yield batch
             finally:
                 input_file.close()
@@ -48,6 +48,6 @@ class Server(flight.FlightServerBase):
 
 
 if __name__ == "__main__":
-    server = Server(location=("localhost", 64648))
+    server = Server("grpc://localhost:62001")
     print(f"Starting Flight Server at port: {server.port}")
     server.serve()
