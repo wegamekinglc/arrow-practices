@@ -4,6 +4,8 @@
 
 #include <arrow/c/abi.h>
 #include <random>
+#include <memory>
+#include <algorithm>
 
 #ifdef __cplusplus
 #ifdef WIN32
