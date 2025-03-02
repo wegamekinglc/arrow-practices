@@ -26,7 +26,7 @@ else
 fi
 
 cd ports/arrow
-./vcpkg install -x-feature=flight
+../../vcpkg install -x-feature=flight
 )
 
 if [ $? -ne 0 ]; then

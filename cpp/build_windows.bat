@@ -26,7 +26,7 @@ if exist "./vcpkg.exe" (
 )
 
 cd ports/arrow
-.\vcpkg install --triplet=x64-windows-static --x-feature=flight
+..\..\vcpkg install --triplet=x64-windows-static --x-feature=flight
 
 if %errorlevel% neq 0 exit /b 1
 cd ../../..
