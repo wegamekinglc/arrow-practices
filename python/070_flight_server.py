@@ -1,3 +1,4 @@
+import datetime as dt
 from pathlib import Path
 import pyarrow.parquet as pq
 from pyarrow import fs
@@ -8,7 +9,7 @@ class Server(flight.FlightServerBase):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        print("Initializing Flight Server")
+        print(f"{dt.datetime.now()} - Initializing Flight Server")
         self._lc = fs.LocalFileSystem()
 
     def list_flights(self, context, criteria):
@@ -23,7 +24,7 @@ class Server(flight.FlightServerBase):
 
             if not f_path.endswith(".parquet"):
                 continue
-            print("Found flight file: {}".format(f_path))
+            print(f"{dt.datetime.now()} - Found flight file: {f_path}")
             with self._lc.open_input_file(f_path) as f:
                 data = pq.ParquetFile(f, pre_buffer=True)
                 yield flight.FlightInfo(
@@ -36,18 +37,13 @@ class Server(flight.FlightServerBase):
 
     def do_get(self, context, ticket):
         input_file = self._lc.open_input_file(ticket.ticket.decode("utf-8"))
-        print("Getting flight data for ticket {}".format(input_file))
-        pf = pq.ParquetFile(input_file, pre_buffer=True)
-        def gen():
-            try:
-                for batch in pf.iter_batches(batch_size=1_000_000):
-                    yield batch
-            finally:
-                input_file.close()
-        return flight.GeneratorStream(pf.schema_arrow, gen())
+        print(f"{dt.datetime.now()} - Getting flight data for ticket {input_file}")
+        pf = pq.ParquetFile(input_file, pre_buffer=True, memory_map=True, buffer_size=100 * 1024 * 1024)
+        print(f"{dt.datetime.now()} - finished loading flight data for ticket {input_file}")
+        return flight.GeneratorStream(pf.schema_arrow, pf.iter_batches(batch_size=1_000_000))
 
 
 if __name__ == "__main__":
     server = Server("grpc://localhost:62001")
-    print(f"Starting Flight Server at port: {server.port}")
+    print(f"{dt.datetime.now()} - Starting Flight Server at port: {server.port}")
     server.serve()
