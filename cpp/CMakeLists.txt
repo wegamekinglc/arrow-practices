@@ -17,12 +17,14 @@ set(PACKAGE_BUGREPORT     "https://github.com/wegamekinglc/arrow-practices/issue
 
 project(${PACKAGE_NAME} LANGUAGES CXX DESCRIPTION "The Arrow Practices Library")
 
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+message("-- CMAKE_TOOLCHAIN_FILE: ${CMAKE_TOOLCHAIN_FILE}")
+message("-- CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 
 set(CMAKE_CXX_STANDARD 17)
 include(Platform)
 
-#find_package(ARROW CONFIG REQUIRED)
+find_package(ARROW CONFIG REQUIRED)
 find_package(ArrowFlight CONFIG REQUIRED)
 include_directories("${ARROW_INCLUDE_DIR}")
 message("-- Arrow INCLUDE DIR: ${ARROW_INCLUDE_DIR}")
