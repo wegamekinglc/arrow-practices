@@ -25,7 +25,7 @@ if exist "./vcpkg.exe" (
     .\bootstrap-vcpkg.bat
 )
 
-.\vcpkg install arrow::%VCPKG_TARGET_TRIPLET%
+.\vcpkg install arrow:%VCPKG_TARGET_TRIPLET%
 
 if %errorlevel% neq 0 exit /b 1
 cd ..
