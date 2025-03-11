@@ -5,12 +5,14 @@ call :set_variable WORK_DIR "%CD%" %WORK_DIR%
 call :set_variable ADDRESS_MODEL Win64 %ADDRESS_MODEL%
 call :set_variable MSVC_RUNTIME static %MSVC_RUNTIME%
 call :set_variable MSVC_VERSION "Visual Studio 17 2022" %MSVC_VERSION%
+call :set_variable VCPKG_TARGET_TRIPLET "x64-windows" %VCPKG_TARGET_TRIPLET%
 
 echo BUILD_TYPE:  %BUILD_TYPE%
 echo WORK_DIR: %WORK_DIR%
 echo ADDRESS_MODEL: %ADDRESS_MODEL%
 echo MSVC_RUNTIME: %MSVC_RUNTIME%
 echo MSVC_VERSION: %MSVC_VERSION%
+echo VCPKG_TARGET_TRIPLET: %VCPKG_TARGET_TRIPLET%
 
 git submodule init
 git submodule update
@@ -23,7 +25,7 @@ if exist "./vcpkg.exe" (
     .\bootstrap-vcpkg.bat
 )
 
-.\vcpkg install arrow:x64-windows
+.\vcpkg install arrow::%VCPKG_TARGET_TRIPLET%
 
 if %errorlevel% neq 0 exit /b 1
 cd ..
@@ -60,9 +62,9 @@ if exist build (
 
 cd build
 if "%ADDRESS_MODEL%"=="Win64" (
-cmake -G "%MSVC_VERSION% %ADDRESS_MODEL%" --preset %BUILD_TYPE% -DMSVC_RUNTIME=%MSVC_RUNTIME% -DVCPKG_TARGET_TRIPLET=x64-windows ..
+cmake -G "%MSVC_VERSION% %ADDRESS_MODEL%" --preset %BUILD_TYPE%-window -DMSVC_RUNTIME=%MSVC_RUNTIME% -DVCPKG_TARGET_TRIPLET=%VCPKG_TARGET_TRIPLET% ..
 ) else (
-cmake -G "%MSVC_VERSION%" --preset %BUILD_TYPE% -DMSVC_RUNTIME=%MSVC_RUNTIME% -DVCPKG_TARGET_TRIPLET=x64-windows ..
+cmake -G "%MSVC_VERSION%" --preset %BUILD_TYPE%-windows -DMSVC_RUNTIME=%MSVC_RUNTIME% -DVCPKG_TARGET_TRIPLET=%VCPKG_TARGET_TRIPLET% ..
 )
 
 if %errorlevel% neq 0 exit /b 1
