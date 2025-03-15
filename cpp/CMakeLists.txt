@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15.0)
+cmake_minimum_required(VERSION 3.21.0)
 
 # For MSVC RUNTIME LIBRARY, need CMP0091=NEW and cmake 3.15+
 cmake_policy(SET CMP0091 NEW)
@@ -27,9 +27,11 @@ include(Platform)
 
 find_package(ARROW CONFIG REQUIRED)
 find_package(ArrowFlight CONFIG REQUIRED)
+find_package(Parquet CONFIG REQUIRED)
 include_directories("${ARROW_INCLUDE_DIR}")
 message("-- Arrow INCLUDE DIR: ${ARROW_INCLUDE_DIR}")
 
 add_subdirectory(chapter1)
 add_subdirectory(chapter4)
+add_subdirectory(chapter5)
 add_subdirectory(chapter7)
