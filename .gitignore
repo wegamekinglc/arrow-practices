@@ -2,8 +2,8 @@ python/data/*
 python/.idea
 cpp/.idea
 cpp/bin
-cpp/cmake-build-debug
-cpp/cmake-build-release
+cpp/cmake-build-*
+cpp/cmake-build-*
 cpp/build
 cpp/lib
 cpp/.vscode
