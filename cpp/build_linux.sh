@@ -7,7 +7,7 @@ export BUILD_TYPE=Release
 export USE_COVERAGE=false  # make it `false` when you need a full performance lib
 export CMAKE_EXPORT_COMPILE_COMMANDS=on
 export BUILD_SHARED_LIBS=off
-export VCPKG_TARGET_TRIPLET=x64-linux
+export VCPKG_TARGET_TRIPLET=x64-linux-dynamic
 
 echo NUM_CORES: $NUM_CORES
 echo BUILD_TYPE: $BUILD_TYPE
