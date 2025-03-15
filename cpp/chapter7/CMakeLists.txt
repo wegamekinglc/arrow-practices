@@ -1,8 +1,6 @@
 file(GLOB_RECURSE FLIGHT_CLIENT_FILES "*.hpp" "*.cpp")
 add_executable(flight_client ${FLIGHT_CLIENT_FILES})
-target_link_libraries(flight_client
-                      Arrow::arrow_shared
-                      ArrowFlight::arrow_flight_shared)
+target_link_libraries(flight_client Arrow::arrow_shared ArrowFlight::arrow_flight_shared)
 
 install(TARGETS flight_client
         RUNTIME DESTINATION bin
