@@ -252,8 +252,8 @@ void run_row_conversions() {
 
 int main(int argc, char** argv) {
   first_example();
-  // random_data_example();
-  // building_struct_array();
-  // build_struct_builder();
-  // run_row_conversions();
+  random_data_example();
+  building_struct_array();
+  build_struct_builder();
+  run_row_conversions();
 }
