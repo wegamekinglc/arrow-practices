@@ -8,8 +8,8 @@
 #include <arrow/table.h>
 #include <parquet/arrow/reader.h>
 
-arrow::Status compute_parquet() {
-    constexpr auto filepath = "C:/Users/wegam/github/arrow-practices/python/data/yellow_tripdata_2015-01.parquet";
+arrow::Status compute_parquet(const std::string& work_dir) {
+    const auto filepath = work_dir + "/python/data/yellow_tripdata_2015-01.parquet";
     ARROW_ASSIGN_OR_RAISE(auto input, arrow::io::ReadableFile::Open(filepath));
     ARROW_ASSIGN_OR_RAISE(auto reader, parquet::arrow::OpenFile(input, arrow::default_memory_pool()));
 
@@ -33,5 +33,8 @@ arrow::Status compute_parquet() {
 }
 
 int main(int argc, char** argv) {
-    PARQUET_THROW_NOT_OK(compute_parquet());
+    if (argc <= 1)
+        throw std::runtime_error("Usage: main arguments is missing");
+    const std::string work_dir = argv[1];
+    PARQUET_THROW_NOT_OK(compute_parquet(work_dir));
 }
