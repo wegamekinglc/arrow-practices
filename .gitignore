@@ -8,3 +8,6 @@ cpp/build
 cpp/lib
 cpp/.vscode
 .vscode
+.ipynb_checkpoints
+.virtual_documents
+build
