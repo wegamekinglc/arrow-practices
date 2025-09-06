@@ -33,8 +33,7 @@
 
 #define ABORT_NOT_OK(expr)                                          \
   do {                                                              \
-    auto _res = (expr);                                             \
-    ::arrow::Status _st = ::arrow::internal::GenericToStatus(_res); \
+    arrow::Status _st = (expr);                                     \
     if (!_st.ok()) {                                                \
       _st.Abort();                                                  \
     }                                                               \
